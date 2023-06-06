@@ -38,16 +38,8 @@ export default function Sidebar({}: Props) {
             </Link>
           </div>
           {!userProfile && (
-            <div className="hidden px-2 py-4 xl:block ">
+            <div className="hidden px-2 py-4 border-b border-gray-300 xl:block">
               <p className="text-gray-400">Login untuk like dan komen Video</p>
-              <div className="pr-4 ">
-                <button
-                  className="w-full px-4 py-2 mt-3 text-red-600 bg-transparent border border-red-600 rounded-md hover:bg-red-600 hover:text-white"
-                  onClick={() => {}}
-                >
-                  Login
-                </button>
-              </div>
             </div>
           )}
           <Discover />

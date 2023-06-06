@@ -3,10 +3,19 @@ import Sidebar from "@/components/Sidebar";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App({ Component, pageProps: { ...pageProps } }: AppProps) {
+  const [ssr, setSsr] = useState(true);
+
+  useEffect(() => {
+    setSsr(false);
+  }, []);
+
+  if (ssr) return null;
+
   return (
     <GoogleOAuthProvider
       clientId={`${process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN}`}
@@ -24,4 +33,4 @@ function App({ Component, pageProps: { ...pageProps } }: AppProps) {
   );
 }
 
-export default dynamic(() => Promise.resolve(App), { ssr: false });
+export default App;

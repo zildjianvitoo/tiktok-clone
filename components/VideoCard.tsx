@@ -37,7 +37,7 @@ export default function VideoCard({ post }: VideoCardProps) {
                   width={62}
                   height={62}
                   className="rounded-full"
-                  src={post.postedBy.image}
+                  src={post.postedBy?.image}
                   alt="photo profile"
                 />
               </>
@@ -47,11 +47,11 @@ export default function VideoCard({ post }: VideoCardProps) {
             <Link href="/">
               <div className="flex items-center gap-2 ">
                 <p className="flex font-bold md:text-lg text-primary">
-                  {post.postedBy.userName}{" "}
+                  {post.postedBy?.userName}{" "}
                   <GoVerified className="mt-1 ml-1 text-blue-400 text-md" />
                 </p>
                 <p className="hidden text-xs font-medium text-gray-500 capitalize md:block">
-                  {post.postedBy.userName}
+                  {post.postedBy?.userName}
                 </p>
               </div>
             </Link>
