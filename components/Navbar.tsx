@@ -33,7 +33,7 @@ export default function Navbar({}: Props) {
       {userProfile && (
         <div className="flex items-center gap-4 md:ml-40 md:gap-10">
           <Link href="/upload">
-            <button className="flex items-center gap-2 px-2 py-1 text-lg font-semibold border-2 md:px-4">
+            <button className="flex items-center gap-2 px-2 py-[6px] text-lg font-semibold border-2 md:px-4">
               <IoMdAdd className="text-xl" />
               {""}
               <span className="hidden md:block">Upload</span>
