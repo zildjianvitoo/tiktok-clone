@@ -38,7 +38,7 @@ export default function Upload({}: Props) {
         .then((data) => setVideoAsset(data));
       setLoading(false);
     } else {
-      setLoading(false);
+      // setLoading(false);
       setWrongFileType(true);
     }
   };

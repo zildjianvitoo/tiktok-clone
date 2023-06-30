@@ -26,12 +26,6 @@ export default function VideoCard({ post }: VideoCardProps) {
     }
   };
 
-  useEffect(() => {
-    if (videoRef?.current) {
-      videoRef.current.muted = isVideoMuted;
-    }
-  }, [isVideoMuted]);
-
   return (
     <div className="flex flex-col pb-6 border-b-2 border-gray-200">
       <div className="">
@@ -77,6 +71,7 @@ export default function VideoCard({ post }: VideoCardProps) {
           <Link href={`detail/${post._id}`}>
             <video
               ref={videoRef}
+              muted={isVideoMuted}
               src={post.video.asset.url}
               loop
               className="rounded-2xl cursor-pointer w-[200px] bg-gray-200  lg:w-[600px] h-[300px] md:h-[400px] lg:h-[530px]"
