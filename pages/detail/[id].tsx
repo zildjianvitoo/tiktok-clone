@@ -1,4 +1,4 @@
-import React from "react";
+import { FormEvent } from "react";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -14,6 +14,7 @@ import Link from "next/link";
 import useAuthStore from "@/store/authStore";
 import Comments from "@/components/Comments";
 import LikeButton from "@/components/LikeButton";
+import { data } from "autoprefixer";
 
 type DetailProps = {
   postDetails: Video;
@@ -22,7 +23,9 @@ type DetailProps = {
 export default function PostId({ postDetails }: DetailProps) {
   const [post, setPost] = useState(postDetails);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isVideoMuted, setIsVideoMuted] = useState(false);
+  const [isVideoMuted, setIsVideoMuted] = useState(true);
+  const [comment, setComment] = useState("");
+  const [isPostingComment, setIsPostingComment] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter();
 
@@ -51,6 +54,27 @@ export default function PostId({ postDetails }: DetailProps) {
         postId: post._id,
         like,
       });
+      setPost({ ...post, likes: data.likes });
+    }
+  };
+
+  const addComment = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      if (userProfile && comment) {
+        setIsPostingComment(true);
+        const { data } = await axios.put(`${BASE_URL}/api/post/${post._id}`, {
+          comment,
+          userId: userProfile._id,
+        });
+        setPost({ ...post, comments: data.comments });
+        setComment("");
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsPostingComment(false);
     }
   };
 
@@ -70,6 +94,7 @@ export default function PostId({ postDetails }: DetailProps) {
               ref={videoRef}
               muted={isVideoMuted}
               loop
+              autoPlay
               onClick={onVideoClick}
               src={post.video.asset.url}
               className="h-full cursor-pointer "
@@ -96,7 +121,7 @@ export default function PostId({ postDetails }: DetailProps) {
         </div>
       </div>
       <div className="relative w-[1000px] md:w-[900px] lg:w-[700px]">
-        <div className="mt-10 lg:mt-20">
+        <div className="mt-10 lg:mt-12">
           <div className="flex gap-3 p-2 ml-4 font-semibold rounded cursor-pointer">
             <div className="w-20 h-20 md:w-16 md:h-16">
               <Link href="/">
@@ -126,15 +151,22 @@ export default function PostId({ postDetails }: DetailProps) {
             </div>
           </div>
           <p className="px-10 text-lg text-gray-600">{post.caption}</p>
-          <div className="px-10 mt-10">
+          <div className="px-10">
             {userProfile && (
               <LikeButton
+                likes={post.likes}
                 handleLike={() => handleLike(true)}
                 handleDislike={() => handleLike(false)}
               />
             )}
           </div>
-          <Comments />
+          <Comments
+            comment={comment}
+            setComment={setComment}
+            addComment={addComment}
+            comments={post.comments}
+            isPostingComment={isPostingComment}
+          />
         </div>
       </div>
     </div>

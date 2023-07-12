@@ -55,6 +55,9 @@ export default function VideoCard({ post }: VideoCardProps) {
                 </p>
               </div>
             </Link>
+            <div>
+              <p className="text-base font-normal">{post.caption}</p>
+            </div>
           </div>
         </div>
       </div>

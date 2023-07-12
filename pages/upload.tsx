@@ -27,7 +27,7 @@ export default function Upload({}: Props) {
     const selectedFile = e.target.files[0];
     const filedTypes = ["video/mp4", "video/webm", "video/ogg"];
 
-    if (filedTypes.includes(selectedFile.type)) {
+    if (filedTypes.includes(selectedFile?.type)) {
       setLoading(true);
       setWrongFileType(false);
       client.assets
@@ -38,7 +38,7 @@ export default function Upload({}: Props) {
         .then((data) => setVideoAsset(data));
       setLoading(false);
     } else {
-      // setLoading(false);
+      setLoading(false);
       setWrongFileType(true);
     }
   };
@@ -62,9 +62,9 @@ export default function Upload({}: Props) {
           _type: "postedBy",
           _ref: userProfile._id,
         },
-        category,
+        topic: category,
       };
-      await axios.post(`${BASE_URL}api/post`, document);
+      await axios.post(`${BASE_URL}/api/post`, document);
       router.push("/");
     }
   };
@@ -89,7 +89,8 @@ export default function Upload({}: Props) {
                       src={videoAsset.url}
                       loop
                       controls
-                      className="rounded-xl h-[450px] mt-16 bg-black "
+                      className="rounded-xl h-[450px] mt-10 bg-black "
+                      // accept="video/mp4,video/webm,video/ogg"
                     ></video>
                   </div>
                 ) : (
