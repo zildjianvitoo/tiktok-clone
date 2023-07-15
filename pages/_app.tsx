@@ -23,11 +23,11 @@ function App({ Component, pageProps: { ...pageProps } }: AppProps) {
       <NextNProgress color="#F51997" startPosition={0.7} />
       <div className="xl:w-[1200px] overflow-hidden m-auto h-[100vh]">
         <Navbar />
-        <div className="flex gap-6 md:gap-20">
+        <div className="flex gap-6 md:gap-10">
           <div className="h-[92vh] overflow-hidden xl:hover:overflow-x-hidden xl:hover:overflow-y-auto">
             <Sidebar />
           </div>
-          <div className="mt-4 flex flex-col gap-10 w-3/5 overflow-auto h-[88vh]">
+          <div className="mt-4 flex flex-col gap-10 w-full lg:w-3/5  overflow-auto overflow-x-hidden h-[88vh]">
             <Component {...pageProps} />
           </div>
         </div>

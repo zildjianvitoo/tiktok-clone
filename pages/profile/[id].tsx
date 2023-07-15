@@ -6,7 +6,6 @@ import VideoCard from "@/components/VideoCard";
 import NoResults from "../../components/NoResults";
 import { IUser, Video } from "@/utils/videos";
 import { BASE_URL } from "@/utils";
-import { GetServerSideProps } from "next";
 
 type Props = {
   data: {
