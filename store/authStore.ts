@@ -3,11 +3,6 @@ import { persist } from "zustand/middleware";
 import axios from "axios";
 import { BASE_URL } from "@/utils";
 
-export interface UserProfile {
-  userName: string;
-  image: string;
-}
-
 export const authStore = (set: any) => ({
   userProfile: null,
   allUsers: [],
