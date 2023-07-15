@@ -33,7 +33,7 @@ export default function Profile({ data }: Props) {
   }, [showUserVideos, userVideos, userLikedVideos]);
 
   return (
-    <div className="w-full">
+    <div className="w-full ml-2">
       <div className="flex w-full gap-6 mb-4 bg-white md:gap-10">
         <div className="w-16 h-16 md:w-32 md:h-32 ">
           <Image
@@ -54,8 +54,8 @@ export default function Profile({ data }: Props) {
           </p>
         </div>
       </div>
-      <div>
-        <div className="flex w-full gap-10 my-10 bg-white border-b-2 border-gray-200 ">
+      <div className="w-full">
+        <div className="flex w-full gap-10 my-10 ml-2 bg-white border-b-2 border-gray-200 ">
           <p
             className={`text-xl font-semibold cursor-pointer mt-2 ${videos} `}
             onClick={() => setShowUserVideos(true)}
@@ -63,7 +63,7 @@ export default function Profile({ data }: Props) {
             Videos
           </p>
           <p
-            className={`text-xl font-semibold cursor-pointer mt-2 ${liked} `}
+            className={`text-xl font-semibold cursor-pointer mt-2 ${liked}  `}
             onClick={() => setShowUserVideos(false)}
           >
             Liked
