@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Video } from "@/utils/videos";
 import VideoCard from "@/components/VideoCard";
-import NoResults from "./NoResults";
+import NoResults from "../components/NoResults";
 
 interface HomeProps {
   videos: Video[];

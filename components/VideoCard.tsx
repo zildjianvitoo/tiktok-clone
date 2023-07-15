@@ -31,7 +31,7 @@ export default function VideoCard({ post }: VideoCardProps) {
       <div className="">
         <div className="flex gap-3 p-2 font-semibold rounded cursor-pointer">
           <div className="w-10 h-10 md:w-16 md:h-16">
-            <Link href="/">
+            <Link href={`/profile/${post.postedBy._id}`}>
               <>
                 <Image
                   width={62}
@@ -44,7 +44,7 @@ export default function VideoCard({ post }: VideoCardProps) {
             </Link>
           </div>
           <div>
-            <Link href="/">
+            <Link href={`/profile/${post.postedBy._id}`}>
               <div className="flex items-center gap-2 ">
                 <p className="flex font-bold md:text-lg text-primary">
                   {post.postedBy?.userName}{" "}
@@ -71,7 +71,7 @@ export default function VideoCard({ post }: VideoCardProps) {
             setIsHover(false);
           }}
         >
-          <Link href={`detail/${post._id}`}>
+          <Link href={`/detail/${post._id}`}>
             <video
               ref={videoRef}
               muted={isVideoMuted}
